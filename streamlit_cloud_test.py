@@ -12,6 +12,8 @@ import pandas as pd
 import numpy as np
 st.write('Hello, *World!* :sunglasses:') # 해당 내용을 수정해서 사이트를 자유롭게 꾸밀 수 있다.
 st.write("테스트 입니다.")
+input = st.text_input("message")
+st.write(input) 
 
 # 제목
 st.title('Streamlit 예제')
