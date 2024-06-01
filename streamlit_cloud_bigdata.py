@@ -7,15 +7,17 @@ Original file is located at
     https://colab.research.google.com/drive/1g3dQFgftVT9qaDR8rijUybRQaX5ydl3_
 """
 
-!sudo apt-get install -y fonts-nanum
-!sudo fc-cache -fv
-!rm ~/.cache/matplotlib -rf
-
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.font_manager as fm
 
-plt.rc('font', family='NanumBarunGothic')
+# 한글 폰트 경로 설정
+font_path = '/usr/share/fonts/truetype/nanum/NanumBarunGothic.ttf'
+font_prop = fm.FontProperties(fname=font_path)
+
+# Matplotlib의 기본 폰트 설정 변경
+plt.rcParams['font.family'] = font_prop.get_name()
 
 years = ['2007','2008','2009','2010','2011','2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
 x = years
