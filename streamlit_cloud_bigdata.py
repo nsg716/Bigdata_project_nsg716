@@ -119,7 +119,8 @@ for i in range(5):
     ax.legend(prop=font_prop)
     ax.grid(True)
     st.pyplot(fig)
-
+    
+    st.write(f"소득 {i+1}분위")
     st.write("입력한 값과 순자산의 차이 비율 :\t\t", f"{net_worth_ratio[i]}%")
     st.write("입력한 값과 부채의 차이 비율 :\t\t", f"{debt_ratio[i]}%")
     st.write("입력한 값과 전체 소득의 차이 비율 :\t", f"{total_income_ratio[i]}%")
