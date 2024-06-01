@@ -10,7 +10,12 @@ Original file is located at
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
+from matplotlib import font_manager
 
+# Nanum Gothic 폰트 설정
+font_path = "NanumGothic.ttf"
+font_prop = font_manager.FontProperties(fname=font_path)
+plt.rc('font', family=font_prop.get_name())
 
 years = ['2007','2008','2009','2010','2011','2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
 x = years
@@ -109,10 +114,10 @@ for i in range(5):
     ax.scatter(years[-1], labor_income_input, color='green', label='사용자 근로소득', zorder=5)
     ax.scatter(years[-1], consume_input, color='purple', label='사용자 소비', zorder=5)
 
-    ax.set_title(f'소득 {i+1}분위별 순자산, 부채, 소득, 소비 현황')
-    ax.set_xlabel('시간')
-    ax.set_ylabel('금액')
-    ax.legend()
+    ax.set_title(f'소득 {i+1}분위별 순자산, 부채, 소득, 소비 현황', fontproperties=font_prop)
+    ax.set_xlabel('시간', fontproperties=font_prop)
+    ax.set_ylabel('금액', fontproperties=font_prop)
+    ax.legend(prop=font_prop)
     ax.grid(True)
     st.pyplot(fig)
 
