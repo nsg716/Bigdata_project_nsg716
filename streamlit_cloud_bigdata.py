@@ -7,10 +7,15 @@ Original file is located at
     https://colab.research.google.com/drive/1g3dQFgftVT9qaDR8rijUybRQaX5ydl3_
 """
 
+!sudo apt-get install -y fonts-nanum
+!sudo fc-cache -fv
+!rm ~/.cache/matplotlib -rf
+
 import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 
+plt.rc('font', family='NanumBarunGothic')
 
 years = ['2007','2008','2009','2010','2011','2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
 x = years
@@ -58,11 +63,21 @@ year_2021index = years.index('2021')  # 2021년에 해당하는 인덱스를 찾
 
 # 사용자 입력
 st.title('가계 재무 데이터 비교')
-net_worth_input = st.number_input("모든 순자산을 입력하세요 (단위: 만 원): ", min_value=0, value=1)
-debt_input = st.number_input("모든 부채를 입력하세요 (단위: 만 원): ", min_value=0, value=1)
-total_income_data_input = st.number_input("모든 전체소득을 입력하세요 (단위: 만 원): ", min_value=0, value=1)
+net_worth_input = st.number_input("모든 순자산을 입력하세요 (단위: 만 원): ", min_value=0)
+if net_worth_input == 0:
+    net_worth_input = 1
+debt_input = st.number_input("모든 부채를 입력하세요 (단위: 만 원): ", min_value=1)
+if debt_input == 0:
+    debt_input = 1
+total_income_data_input = st.number_input("모든 전체소득을 입력하세요 (단위: 만 원): ", min_value=0)
+if total_income_data_input == 0:
+    total_income_data_input = 1
 labor_income_input = st.number_input("한 해 근로소득을 입력하세요 (단위: 만 원): ", min_value=0, value=1)
+if labor_income_input == 0:
+    labor_income_input = 1
 consume_input = st.number_input("한 해 소비를 입력하세요 (단위: 만 원): ", min_value=0, value=1)
+if consume_input == 0:
+    consume_input = 1
 
 # 2021년 데이터 추출
 year_2021index = years.index('2021')
@@ -80,9 +95,7 @@ income_ratio = [round((labor_income_input / value)*100-100, 4) for value in inco
 consume_ratio = [round((consume_input / value)*100-100, 4) for value in consume_2021]
 
 # 결과 출력
-st.subheader('전치된 결과')
-ratios = np.array([net_worth_ratio, debt_ratio, total_income_ratio, income_ratio, consume_ratio])
-st.write(ratios)
+
 
 # 그래프 그리기
 for i in range(5):
@@ -107,9 +120,9 @@ for i in range(5):
     ax.grid(True)
     st.pyplot(fig)
 
-    st.write("입력한 값과 순자산의 차이 비율 (높을수록 순자산이 소득분위표에 비해서 많다는 의미):", f"{net_worth_ratio[i]}%")
-    st.write("입력한 값과 부채의 차이 비율 (낮을수록 부채가 소득분위표에 비해서 적다는 의미):", f"{debt_ratio[i]}%")
-    st.write("입력한 값과 전체 소득의 차이 비율 (높을수록 전체 소득이 소득분위표에 비해서 많다는 의미):", f"{total_income_ratio[i]}%")
-    st.write("입력한 값과 근로 소득의 차이 비율 (높을수록 근로 소득이 소득분위표에 비해서 많다는 의미):", f"{income_ratio[i]}%")
-    st.write("입력한 값과 소비의 차이 비율 (높을수록 소비가 소득분위표에 비해서 많다는 의미):", f"{consume_ratio[i]}%")
+    st.write("입력한 값과 순자산의 차이 비율 :\t\t", f"{net_worth_ratio[i]}%")
+    st.write("입력한 값과 부채의 차이 비율 :\t\t", f"{debt_ratio[i]}%")
+    st.write("입력한 값과 전체 소득의 차이 비율 :\t", f"{total_income_ratio[i]}%")
+    st.write("입력한 값과 근로 소득의 차이 비율 :\t", f"{income_ratio[i]}%")
+    st.write("입력한 값과 소비의 차이 비율 :\t", f"{consume_ratio[i]}%")
     st.write("-" * 50)
