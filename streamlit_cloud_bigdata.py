@@ -13,7 +13,10 @@ import matplotlib.pyplot as plt
 import os
 import matplotlib.font_manager as fm 
 
-
+def unique(list):
+    x = np.array(list)
+    return np.unique(x)
+    
 @st.cache_data
 def fontRegistered():
     font_dirs = [os.getcwd() + '/customFonts']
@@ -114,6 +117,7 @@ consume_ratio = [round((consume_input / value)*100-100, 4) for value in consume_
 
 # 그래프 그리기
 for i in range(5):
+    plt.rc('font', family=fontname)
     fig, ax = plt.subplots(figsize=(10, 6))
 
     ax.plot(years, net_worth_data['순자산'][i], label='순자산', color='red')
