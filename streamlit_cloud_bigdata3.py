@@ -179,4 +179,4 @@ for year, incomes, predicted_income in zip(years, income_values, predicted_incom
         # 예측 소득과 실제 소득 사이의 차이를 백분율로 계산
         difference_percentage = ((predicted_income[0] - income) / income) * 100
         st.write(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
-    print()
+    st.write("")
