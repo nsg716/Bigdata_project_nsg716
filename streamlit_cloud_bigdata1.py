@@ -11,7 +11,7 @@ import streamlit as st
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
-def run_streamlit_app2():
+def run_streamlit_app1():
     # Nanum Gothic 폰트 설정
     font_path = "NanumGothic.ttf"
     font_prop = font_manager.FontProperties(fname=font_path)
