@@ -7,11 +7,13 @@ Original file is located at
     https://colab.research.google.com/drive/1E7fsPezSpTx4l68FrDKz_Qhnf42_bA9j
 """
 
-import streamlit as st
-import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib import font_manager
 def run_streamlit_app2():
+        
+    import streamlit as st
+    import numpy as np
+    import matplotlib.pyplot as plt
+    from matplotlib import font_manager
+    
     # Nanum Gothic 폰트 설정
     font_path = "NanumGothic.ttf"
     font_prop = font_manager.FontProperties(fname=font_path)
