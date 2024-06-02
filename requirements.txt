@@ -1,3 +1,7 @@
 streamlit
 numpy
+pandas
 matplotlib
+sklearn.metrics 
+sklearn.linear_model
+sklearn.model_selection
