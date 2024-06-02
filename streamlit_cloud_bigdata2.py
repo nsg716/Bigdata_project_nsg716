@@ -118,7 +118,7 @@ for i in range(5):
     ax.set_title(f'소득 {i+1}분위별 순자산, 부채, 소득, 소비 현황', fontproperties=font_prop)
     ax.set_xlabel('시간', fontproperties=font_prop)
     ax.set_ylabel('금액', fontproperties=font_prop)
-    ax.legendfontproperties=font_prop)
+    ax.legend(fontproperties=font_prop)
     ax.grid(True)
 
     st.pyplot(fig)
