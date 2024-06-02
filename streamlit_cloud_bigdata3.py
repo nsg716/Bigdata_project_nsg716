@@ -115,8 +115,14 @@ st.write("Mean Squared Error:", mse)
 
 # 회귀 계수 확인
 st.write("Intercept (절편):", model.intercept_)
-st.write("Coefficients (계수 : 자산, 소비):", model.coef_)
 
+# 모델의 계수 가져오기
+asset_coef, consume_coef = model.coef_
+
+# 계수를 설명과 함께 출력
+st.write(f"Coefficients (계수):")
+st.write(f"  자산: {asset_coef:.4f}")
+st.write(f"  소비: {consume_coef:.4f}")
 import streamlit as st
 import matplotlib.pyplot as plt
 import numpy as np  # NumPy 추가
