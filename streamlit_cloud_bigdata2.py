@@ -74,22 +74,22 @@ total_income_2021 = [arr[year_2021index] for arr in total_income_data['전체소
 income_2021 = [arr[year_2021index] for arr in income_data['근로소득']]
 consume_2021 = [arr[year_2021index] for arr in consume_data['소비']]
 
-# 사용자 입력 처리 - 값을 나누기에 중요
-net_worth_input = int(input("모든 순자산을 입력하세요 (단위: 만 원): "))
+net_worth_input = st.number_input("모든 순자산을 입력하세요 (단위: 만 원): ", min_value=1)
 if net_worth_input == 0:
     net_worth_input = 1
-debt_input = int(input("모든 부채를 입력하세요(단위 : 만 원) : "))
+debt_input = st.number_input("모든 부채를 입력하세요 (단위: 만 원): ", min_value=1)
 if debt_input == 0:
     debt_input = 1
-total_income_data_input = int(input("모든 전체소득을 입력하세요(단위 : 만 원) : "))
+total_income_data_input = st.number_input("모든 전체소득을 입력하세요 (단위: 만 원): ", min_value=1)
 if total_income_data_input == 0:
     total_income_data_input = 1
-labor_income_input = int(input("한 해 근로소득을 입력하세요(단위 : 만 원) : "))
+labor_income_input = st.number_input("한 해 근로소득을 입력하세요 (단위: 만 원): ", min_value=1)
 if labor_income_input == 0:
     labor_income_input = 1
-consume_input = int(input("한 해 소비를 입력하세요(단위 :만 원) : "))
+consume_input = st.number_input("한 해 소비를 입력하세요 (단위: 만 원): ", min_value=1)
 if consume_input == 0:
     consume_input = 1
+
 
 # 입력 값을 2021년 데이터로 나눈 리스트 생성 후 100을 뺌
 net_worth_ratio = [round((net_worth_input / value)*100-100, 4) for value in net_worth_2021]
@@ -98,12 +98,6 @@ total_income_ratio = [round( (total_income_data_input / value)*100-100, 4) for v
 income_ratio = [round( (labor_income_input / value)*100-100, 4) for value in income_2021]
 consume_ratio = [round( (consume_input / value)*100-100, 4) for value in consume_2021]
 
-# 리스트를 전치
-ratios = np.array([net_worth_ratio, debt_ratio, total_income_ratio, income_ratio, consume_ratio])
-
-# 결과 출력
-print("전치된 결과:")
-print(ratios)
 
 for i in range(5):
     fig, ax = plt.subplots(figsize=(10, 6))
