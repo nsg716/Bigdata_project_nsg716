@@ -158,7 +158,7 @@ predicted_incomes = [predicted_income_data for _ in years]
 fig, ax = plt.subplots(figsize=(10, 6))
 for i in range(5):  # 5개의 소득 분위
     ax.plot(years, [income[i] for income in income_values], label=income_data['소득5분위'][i])
-ax.plot(years, predicted_incomes, label='예측 소득', linestyle='--', color='red' ,fontproperties=font_prop)
+ax.plot(years, predicted_incomes, label='예측 소득', linestyle='--', color='red')
 ax.set_xlabel('연도', fontproperties=font_prop)
 ax.set_ylabel('소득', fontproperties=font_prop)
 ax.set_title('연도별 소득 분위' ,fontproperties=font_prop)
