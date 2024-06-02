@@ -16,7 +16,7 @@ from sklearn.model_selection import cross_val_score
 from matplotlib import font_manager
 import streamlit as st
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib as plt
 
 def run_streamlit_app3():
     # Nanum Gothic 폰트 설정
