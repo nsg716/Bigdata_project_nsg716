@@ -103,11 +103,11 @@ for i in range(5):
     fig, ax = plt.subplots(figsize=(10, 6))
 
     # 소득 분위별로 5개의 선그래프 그리기
-    ax.plot(years, net_worth_2021, label='순자산', color='red')
-    ax.plot(years, debt_2021, label='부채', color='blue')
-    ax.plot(years, total_income_2021, label='전체소득', color='orange')
-    ax.plot(years, income_2021, label='근로소득', color='green')
-    ax.plot(years, consume_2021, label='소비', color='purple')
+    ax.plot(years, net_worth_data['순자산'][i], label='순자산', color='red')
+    ax.plot(years, debt_data['부채'][i], label='부채', color='blue')
+    ax.plot(years, total_income_data['전체소득'][i], label='전체소득', color='orange')
+    ax.plot(years, income_data['근로소득'][i], label='근로소득', color='green')
+    ax.plot(years, consume_data['소비'][i], label='소비', color='purple')
 
     # 사용자 데이터 포인트에 텍스트 추가하기
     ax.scatter(years[-1], net_worth_input, color='red', label='사용자 순자산', zorder=7)
