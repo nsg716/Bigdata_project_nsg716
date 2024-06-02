@@ -168,7 +168,7 @@ ax.plot(years, predicted_incomes, label='예측 소득', linestyle='--', color='
 ax.set_xlabel('연도', fontproperties=font_prop)
 ax.set_ylabel('소득', fontproperties=font_prop)
 ax.set_title('연도별 소득 분위' ,fontproperties=font_prop)
-ax.legend()
+ax.legend(prop=font_prop)
 plt.xticks(rotation=45)  # x축 레이블 회전
 plt.grid(True)
 plt.tight_layout()  # 그래프 레이아웃 조정
