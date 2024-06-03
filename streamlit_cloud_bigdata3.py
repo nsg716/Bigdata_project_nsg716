@@ -254,6 +254,6 @@ def run_streamlit_app3():
             if abs(difference_percentage) < abs(min_difference):
                 min_difference = difference_percentage
                 min_difference_percentage = difference_percentage
-        st.write(f"  이 년도 중 0에 가장 가까운 차이: {min_difference_percentage:.2f}%")
+        st.write(f"  가장 가까운 분위의 차이: {min_difference_percentage:.2f}%")
         st.write()
 
