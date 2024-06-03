@@ -242,20 +242,19 @@ def run_streamlit_app3():
     ax.legend(prop=font_prop)
     st.pyplot(fig)
     
-    # Calculate the percentage difference between predicted and actual incomes
     for year, incomes, predicted_income in zip(future_years, income_values, predicted_incomes):
         min_difference = float('inf')
         min_difference_percentage = 0
-        print(f"{year}년도 소득 분위별 차이 (%):")
+        print(f"{year}년도 소득 분위별 차이 (%):") 
         for i, income in enumerate(incomes):
-             # 예측 소득과 실제 소득 사이의 차이를 백분율로 계산
-             difference_percentage = ((predicted_income[0] - income) / income) * 100
-             print(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
-             # 0에 가장 가까운 차이 값 찾기
-             if abs(difference_percentage) < abs(min_difference):
-                    min_difference = difference_percentage
-                    min_difference_percentage = difference_percentage
-        print(f"  이 년도 중 가장 가까운 차이: {min_difference_percentage:.2f}%")
+            # 예측 소득과 실제 소득 사이의 차이를 백분율로 계산
+            difference_percentage = ((predicted_income[i] - income) / income) * 100
+            print(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
+            # 0에 가장 가까운 차이 값 찾기
+            if abs(difference_percentage) < abs(min_difference):
+                min_difference = difference_percentage
+                min_difference_percentage = difference_percentage
+        print(f"  이 년도 중 0에 가장 가까운 차이: {min_difference_percentage:.2f}%")
         print()
 
 
