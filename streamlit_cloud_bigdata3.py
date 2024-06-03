@@ -191,3 +191,67 @@ def run_streamlit_app3():
             difference_percentage = ((predicted_income[0] - income) / income) * 100
             st.write(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
         st.write("")
+
+    
+    
+    
+    # Train the linear regression models
+    years = [year for year in income_data.keys() if year.isnumeric()]
+    income_values = [income_data[year] for year in years]
+    
+    X = np.array([int(year) for year in years]).reshape(-1, 1)
+    models = []
+    
+    for i in range(5):
+        y = np.array([income[i] for income in income_values])
+        model = LinearRegression()
+        model.fit(X, y)
+        models.append(model)
+    
+    # Generate predicted data from 2022 to 2026
+    future_years = list(range(2022, 2027))
+    future_incomes = []
+    
+    for i in range(5):
+        future_income = []
+        for year in future_years:
+            income = models[i].predict([[year]])
+            future_income.append(income[0])
+        future_incomes.append(future_income)
+    
+    # Display the results
+    st.title("소득 분위별 예측 결과")
+    
+    for i in range(5):
+        st.subheader(f"소득 {i+1}분위 예측 결과:")
+        for j, year in enumerate(future_years):
+            st.write(f"{year}년도 예상 소득: {future_incomes[i][j]:.2f} 만 원")
+        st.write()
+    
+    # Create the chart
+    st.subheader("소득 분위별 예측 결과 차트")
+    predicted_incomes = [predicted_income_data for _ in future_years]
+    
+    fig, ax = plt.subplots(figsize=(12, 6))
+    for i in range(5):
+        ax.plot(future_years, future_incomes[i], label=income_data['소득5분위'][i])
+    ax.plot(future_years, predicted_incomes, label='예측 소득', linestyle='--', color='red')
+    ax.set_xlabel('년도',fontproperties=font_prop)
+    ax.set_ylabel('소득 (만 원)',fontproperties=font_prop)
+    ax.set_title('소득 분위별 예측 결과',fontproperties=font_prop)
+    ax.legend(prop=font_prop)
+    st.pyplot(fig)
+    
+    # Calculate the percentage difference between predicted and actual incomes
+    st.subheader("소득 분위별 차이 (%)")
+    for year, incomes, predicted_income in zip(future_years, income_values, predicted_incomes):
+        min_difference = float('inf')
+        st.write(f"{year}년도 소득 분위별 차이 (%):")
+        for i, income in enumerate(incomes):
+            difference_percentage = ((predicted_income[0] - income) / income) * 100
+            st.write(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
+            min_difference = min(min_difference, difference_percentage)
+        st.write(f"  이 년도 중 가장 작은 차이: {min_difference:.2f}%")
+        st.write()
+
+
