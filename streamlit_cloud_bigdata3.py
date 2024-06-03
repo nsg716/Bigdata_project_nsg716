@@ -249,7 +249,7 @@ def run_streamlit_app3():
         print(f"{year}년도 소득 분위별 차이 (%):")
         for i, income in enumerate(incomes):
              # 예측 소득과 실제 소득 사이의 차이를 백분율로 계산
-             difference_percentage = ((predicted_income[i] - income) / income) * 100
+             difference_percentage = ((predicted_income[0] - income) / income) * 100
              print(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
              # 0에 가장 가까운 차이 값 찾기
              if abs(difference_percentage) < abs(min_difference):
