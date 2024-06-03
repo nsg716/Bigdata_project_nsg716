@@ -250,7 +250,8 @@ def run_streamlit_app3():
         for i, income in enumerate(incomes):
             difference_percentage = ((predicted_income[0] - income) / income) * 100
             st.write(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
-            min_difference = min(min_difference, abs(difference_percentage))
+            if min_difference >  abs(difference_percentage):
+                min_difference = difference_percentage
         st.write(f"  이 년도 중 가장 작은 차이: {min_difference:.2f}%")
         st.write()
 
