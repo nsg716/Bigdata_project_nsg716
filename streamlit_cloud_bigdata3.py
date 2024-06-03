@@ -242,8 +242,6 @@ def run_streamlit_app3():
     ax.legend(prop=font_prop)
     st.pyplot(fig)
     
-
-
     for year, incomes, predicted_income in zip(future_years, income_values, predicted_incomes):
         min_difference = float('inf')
         min_difference_percentage = 0
