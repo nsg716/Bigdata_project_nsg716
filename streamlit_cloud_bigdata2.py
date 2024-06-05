@@ -13,14 +13,21 @@ def run_streamlit_app2():
     import requests
     from urllib.parse import quote
 
-    # 깃허브 파일 경로
 
-    github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv?token=GHSAT0AAAAAACTHB3ECRCSZ47GVDNCL4UE2ZTAANHA"
+    # 깃허브 파일 경로와 토큰
+    github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv"
+    github_token = "GHSAT0AAAAAACTHB3ECRCSZ47GVDNCL4UE2ZTAANHA"  # 실제 토큰으로 변경해야 합니다
     
-
-     # 데이터 로드
-    df = pd.read_csv(github_file_path)
-
+    # 데이터 로드
+    try:
+        headers = {"Authorization": f"token {github_token}"}
+        response = requests.get(github_file_path, headers=headers)
+        response.raise_for_status()
+        df = pd.read_csv(io.StringIO(response.text))
+    except requests.exceptions.RequestException as e:
+        st.error(f"데이터 로드 중 오류가 발생했습니다: {e}")
+        return
+    
     # 데이터 표시
     st.dataframe(df)
 
