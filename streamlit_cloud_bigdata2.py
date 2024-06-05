@@ -14,7 +14,7 @@ def run_streamlit_app2():
     import os
     
     # 파일 저장 경로 설정
-    github_url = 'https://raw.githubusercontent.com/사용자명/저장소명/브랜치명/파일경로.csv'
+    github_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv'
 
     # 파일 다운로드
     csv_file_path = download_csv_from_github(github_url)
