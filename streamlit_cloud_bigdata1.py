@@ -25,7 +25,7 @@ def run_streamlit_app1():
     net_worth_input = st.number_input("모든 순자산을 입력하세요 (단위: 만 원): ", min_value=0)
     if net_worth_input == 0:
         net_worth_input = 1
-    debt_input = st.number_input("모든 부채를 입력하세요 (단위: 만 원): ", min_value=1)
+    debt_input = st.number_input("모든 부채를 입력하세요 (단위: 만 원): ", min_value=0)
     if debt_input == 0:
         debt_input = 1
     total_income_data_input = st.number_input("모든 전체소득을 입력하세요 (단위: 만 원): ", min_value=0)
