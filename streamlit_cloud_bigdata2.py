@@ -16,7 +16,7 @@ def run_streamlit_app2():
  
     uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type='csv')
     if uploaded_file is not None:
-        data = pd.read_csv(uploaded_file)
+        data = pd.read_csv(uploaded_file, encoding='utf-8')
         st.write(data)
 
 
