@@ -8,6 +8,9 @@ Original file is located at
 """
 
 def run_streamlit_app2():
+    import pandas as pd
+    import streamlit as st
+    
     # 깃허브 파일 경로
     github_file_path = "https://raw.githubusercontent.com/[nsg716]/[test_streamlit_cloud]/main/(정제)소득5분위별_가구주_특성_20240520010215.csv"
 
