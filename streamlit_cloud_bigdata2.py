@@ -10,14 +10,14 @@ Original file is located at
 def run_streamlit_app2():
     import pandas as pd
     import streamlit as st
-    
+
+
+    # 깃허브 파일 경로
+    github_file_path = "hhttps://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/(%EC%A0%95%EC%A0%9C)%EC%86%8C%EB%93%9D5%EB%B6%84%EC%9C%84%EB%B3%84_%EA%B0%80%EA%B5%AC%EC%A3%BC_%ED%8A%B9%EC%84%B1_20240520010215.csv?token=GHSAT0AAAAAACTHB3ED3QOFMCFWBCP53YUCZTAAGUQ"
 
     st.title("소득 5분위별 가구주 특성 분석")
+    # 데이터 로드
+    df = pd.read_csv(github_file_path)
+    # 데이터 표시
+    st.dataframe(df)
 
-
- 
-    uploaded_file = st.file_uploader("(정제)소득5분위별_가구주_특성_20240520010215.csv", type='csv')
-    if uploaded_file is not None:
-        data = pd.read_csv(uploaded_file)
-        st.write(data)
-https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/(%EC%A0%95%EC%A0%9C)%EC%86%8C%EB%93%9D5%EB%B6%84%EC%9C%84%EB%B3%84_%EA%B0%80%EA%B5%AC%EC%A3%BC_%ED%8A%B9%EC%84%B1_20240520010215.csv?token=GHSAT0AAAAAACTHB3ED3QOFMCFWBCP53YUCZTAAGUQ
