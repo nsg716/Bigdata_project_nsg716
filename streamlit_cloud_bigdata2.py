@@ -15,9 +15,9 @@ def run_streamlit_app2():
 
 
     # 깃허브 파일 경로와 토큰
-    github_file_path = "./test.csv"
+    github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv"
     github_token = "GHSAT0AAAAAACTHB3ECRCSZ47GVDNCL4UE2ZTAANHA"  # 실제 토큰으로 변경해야 합니다
-    
+
     # 데이터 로드
     try:
         headers = {"Authorization": f"token {github_token}"}
@@ -27,7 +27,4 @@ def run_streamlit_app2():
     except requests.exceptions.RequestException as e:
         st.error(f"데이터 로드 중 오류가 발생했습니다: {e}")
         return
-    
-    # 데이터 표시
-    st.dataframe(df)
 
