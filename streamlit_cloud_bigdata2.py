@@ -17,76 +17,80 @@ def run_streamlit_app2():
     github_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv'
     
     # CSV 파일 읽기
-    df1 = pd.read_csv(github_url, encoding='cp949')
-    
-    # Streamlit 앱 시작
-    st.title('깃허브 데이터 시각화')
-    
-    # 변수 설정
-    years = ['2007', '2008', '2009', '2010', '2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021']
-    columns_of_interest = ['소득분위별(1)', '특성별(1)', '특성별(2)'] + years
+    df1 = pd.read_csv(github_url)
+        
+    years = ['2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
+    columns_of_interest = ['소득분위별(1)', '특성별(1)','특성별(2)'] + years
     income_levels = ['1분위', '2분위', '3분위', '4분위', '5분위']
     categories = ['성별', '연령별', '학력별', '종사자지위별']
-    genders = ['남성', '여성']
+    genders = ['남성','여성']
     ages = ['20대 이하', '30대', '40대', '50대', '60대 이상']
-    educations = ['중졸이하', '고교재학/고졸', '대재이상']
-    employee_statuses = ['임금 근로자', '일용 근로자', '고용원이 없는 자영업자', '고용원을 둔 사업주', '무급가족 종사자', '전업주부/학생/무직']
+    educations = ['중졸이하','고교재학/고졸', '대재이상']
+    employee_statuses = ['임금 근로자','일용 근로자','고용원이 없는 자영업자','고용원을 둔 사업주','무급가족 종사자','전업주부/학생/무직']
     
-    # 데이터 필터링
     df1_filtered = df1[columns_of_interest]
     
+    st.title("데이터 추출 및 배열화")
+    
     # 사용자 입력 받기
-    st.title("가구원 비율 계산기")
-    
-    years_input = st.selectbox("연도별 (2007~2021):", years)
-    income_level_input = st.selectbox("소득분위 (1-5):", income_levels) + "분위"
-    gender_input = st.selectbox("성별:", genders)
-    age_input = st.selectbox("연령별:", ages)
-    education_input = st.selectbox("학력별:", educations)
-    employee_status_input = st.selectbox("종사자지위별:", employee_statuses)
-    
-    # 데이터 추출 및 배열화
+    years_input = st.text_input("연도를 입력하세요 (2007~2021)")
+    income_level_input = st.text_input("소득분위를 입력하세요 (1-5)")
+    gender_input = st.text_input("성별을 입력하세요")
+    age_input = st.text_input("연령을 입력하세요")
+    education_input = st.text_input("학력을 입력하세요")
+    employee_status_input = st.text_input("종사자지위를 입력하세요")
     data_dict = {}
     
     for income_level in income_levels:
         if income_level == income_level_input:
             for category in categories:
-                if category == '성별':
-                    key = f"{category}_{income_level}_{gender_input}"
-                    data = df1_filtered[
-                        (df1_filtered['소득분위별(1)'] == income_level) &
-                        (df1_filtered['특성별(1)'] == category) &
-                        (df1_filtered['특성별(2)'] == gender_input)
-                    ]
-                    if not data.empty:
-                        data_dict[key] = data[years_input].values.flatten()
-                elif category == '연령별':
-                    key = f"{category}_{income_level}_{age_input}"
-                    data = df1_filtered[
-                        (df1_filtered['소득분위별(1)'] == income_level) &
-                        (df1_filtered['특성별(1)'] == category) &
-                        (df1_filtered['특성별(2)'] == age_input)
-                    ]
-                    if not data.empty:
-                        data_dict[key] = data[years_input].values.flatten()
-                elif category == '학력별':
-                    key = f"{category}_{income_level}_{education_input}"
-                    data = df1_filtered[
-                        (df1_filtered['소득분위별(1)'] == income_level) &
-                        (df1_filtered['특성별(1)'] == category) &
-                        (df1_filtered['특성별(2)'] == education_input)
-                    ]
-                    if not data.empty:
-                        data_dict[key] = data[years_input].values.flatten()
-                elif category == '종사자지위별':
-                    key = f"{category}_{income_level}_{employee_status_input}"
-                    data = df1_filtered[
-                        (df1_filtered['소득분위별(1)'] == income_level) &
-                        (df1_filtered['특성별(1)'] == category) &
-                        (df1_filtered['특성별(2)'] == employee_status_input)
-                    ]
-                    if not data.empty:
-                        data_dict[key] = data[years_input].values.flatten()
+                for gender in genders:
+                    if gender == gender_input:
+                        key = f"{category}_{income_level}_{gender}"
+                        data = df1_filtered[
+                            (df1_filtered['소득분위별(1)'] == income_level) &
+                            (df1_filtered['특성별(1)'] == category) &
+                            (df1_filtered['특성별(2)'] == gender)
+                        ]
+                        if not data.empty:
+                            data_dict[key] = data[years_input].values.flatten()
+    
+                for age in ages:
+                    if age == age_input:
+                        key = f"{category}_{income_level}_{age}"
+                        data = df1_filtered[
+                            (df1_filtered['소득분위별(1)'] == income_level) &
+                            (df1_filtered['특성별(1)'] == category) &
+                            (df1_filtered['특성별(2)'] == age)
+                        ]
+                        if not data.empty:
+                            data_dict[key] = data[years_input].values.flatten()
+    
+                for education in educations:
+                    if education == education_input:
+                        key = f"{category}_{income_level}_{education}"
+                        data = df1_filtered[
+                            (df1_filtered['소득분위별(1)'] == income_level) &
+                            (df1_filtered['특성별(1)'] == category) &
+                            (df1_filtered['특성별(2)'] == education)
+                        ]
+                        if not data.empty:
+                            data_dict[key] = data[years_input].values.flatten()
+    
+                for employee_status in employee_statuses:
+                    if employee_status == employee_status_input:
+                        key = f"{category}_{income_level}_{employee_status}"
+                        data = df1_filtered[
+                            (df1_filtered['소득분위별(1)'] == income_level) &
+                            (df1_filtered['특성별(1)'] == category) &
+                            (df1_filtered['특성별(2)'] == employee_status)
+                        ]
+                        if not data.empty:
+                            data_dict[key] = data[years_input].values.flatten()
+    
+    st.write("추출된 데이터:")
+    for key, value in data_dict.items():
+        st.write(f"{key}: {value}")
     
     # 결과 계산 및 출력
     cal = 1
