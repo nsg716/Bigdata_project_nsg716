@@ -12,13 +12,13 @@ def run_streamlit_app2():
     import streamlit as st
 
 
-
-    # 깃허브 파일 경로
-    github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv?token=GHSAT0AAAAAACTHB3EDIGRUHTYV2XXMRXEMZTABOLA"
-
-   
-    # 데이터 로드
-    df = pd.read_csv(github_file_path)
-    # 데이터 표시
+    @st.cache_data  
+    def load_data(url):
+        df = pd.read_csv(url)
+        return df
+    
+    df = load_data("https://github.com/nsg716/raw/master/test.csv")
     st.dataframe(df)
+    
+    st.button("Rerun")
 
