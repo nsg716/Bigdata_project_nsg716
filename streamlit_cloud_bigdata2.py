@@ -15,12 +15,9 @@ def run_streamlit_app2():
     
     # 파일 저장 경로 설정
     github_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv'
-
-    # 파일 다운로드
-    csv_file_path = download_csv_from_github(github_url)
-    
+  
     # CSV 파일 읽기
-    df1 = pd.read_csv(csv_file_path)
+    df1 = pd.read_csv(github_url)
     
     # Streamlit 앱 시작
     st.title('깃허브 데이터 시각화')
