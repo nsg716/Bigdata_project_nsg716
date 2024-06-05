@@ -11,13 +11,12 @@ def run_streamlit_app2():
     import pandas as pd
     import streamlit as st
     
-    # 깃허브 파일 경로
-    github_file_path = "https://raw.githubusercontent.com/[nsg716]/[test_streamlit_cloud]/(정제)소득5분위별_가구주_특성_20240520010215.csv"
 
     st.title("소득 5분위별 가구주 특성 분석")
 
-    # 데이터 로드
-    df = pd.read_csv(github_file_path)
 
-    # 데이터 표시
-    st.dataframe(df)
+ 
+    uploaded_file = st.file_uploader("(정제)소득5분위별_가구주_특성_20240520010215.csv", type='csv')
+    if uploaded_file is not None:
+        data = pd.read_csv(uploaded_file)
+        st.write(data)
