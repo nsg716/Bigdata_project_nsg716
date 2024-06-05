@@ -13,12 +13,18 @@ def run_streamlit_app2():
 
 
     @st.cache_data  
-    def load_data(url):
-        df = pd.read_csv(url)
-        return df
+    df = pd.read_csv('test.csv')
+    #CSV파일 호출
     
-    df = load_data("https://github.com/nsg716/raw/master/test.csv")
     st.dataframe(df)
+    # 데이터프레임 웹 대시보드에 출력
+ 
+    species = df['species'].unique()
+    # 특정 컬럼 중복 없이 출력
     
-    st.button("Rerun")
+    st.text('아이리스 꽃은 ' + species + '으로 되어있다.')
+    # 데이터프레임 값을 이용하여 웹 대시보드 텍스트 출력
+ 
+    st.dataframe(df.head())
+    st.write(df.head())
 
