@@ -13,8 +13,8 @@ def run_streamlit_app2():
 
 
     # GitHub 또는 GitLab에서 CSV 파일 로드
-    data_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/main/test.csv'
-    data = pd.read_csv(data_url ,encoding = "cp949")
+    data_url = 'https://github.com/nsg716/test_streamlit_cloud/blob/master/test.csv'
+    data = pd.read_csv(data_url)
     st.write(data)
 
 
