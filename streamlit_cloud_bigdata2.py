@@ -14,29 +14,24 @@ def run_streamlit_app2():
     import os
     
     # 파일 저장 경로 설정
-    save_path = 'data.csv'
+    github_url = 'https://raw.githubusercontent.com/사용자명/저장소명/브랜치명/파일경로.csv'
+
+    # 파일 다운로드
+    csv_file_path = download_csv_from_github(github_url)
     
-    uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type='csv')
-    if uploaded_file is not None:
-        data = pd.read_csv(uploaded_file, encoding='cp949')
-        st.write(data)
+    # CSV 파일 읽기
+    df1 = pd.read_csv(csv_file_path)
     
-        # 저장 버튼 생성
-        if st.button('데이터 저장'):
-            # 데이터를 CSV 파일로 저장
-            data.to_csv(save_path, index=False)
-            st.success('데이터가 저장되었습니다.')
+    # Streamlit 앱 시작
+    st.title('깃허브 데이터 시각화')
     
-    # 저장된 파일이 있는 경우 자동으로 로드
-    if os.path.exists(save_path):
-        st.write('저장된 데이터가 있습니다.')
-        data = pd.read_csv(save_path)
-        st.write(data)
+    st.write('CSV 파일 데이터:')
+    st.write(data)
 
 
     
     # 데이터 불러오기
-    df1 = data
+    
     
     # 변수 설정
     years = ['2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
