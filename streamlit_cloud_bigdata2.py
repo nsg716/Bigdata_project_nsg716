@@ -15,9 +15,17 @@ def run_streamlit_app2():
     # 깃허브 파일 경로
     github_file_path = "hhttps://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/(%EC%A0%95%EC%A0%9C)%EC%86%8C%EB%93%9D5%EB%B6%84%EC%9C%84%EB%B3%84_%EA%B0%80%EA%B5%AC%EC%A3%BC_%ED%8A%B9%EC%84%B1_20240520010215.csv?token=GHSAT0AAAAAACTHB3ED3QOFMCFWBCP53YUCZTAAGUQ"
 
-    st.title("소득 5분위별 가구주 특성 분석")
-    # 데이터 로드
-    df = pd.read_csv(github_file_path)
-    # 데이터 표시
+    encoded_url = quote(github_file_path, safe='/:?=&')
+    
+    # CSV 파일 다운로드 및 DataFrame 생성
+    @st.cache(allow_output_mutation=True)
+    def load_data():
+        df = pd.read_csv(encoded_url)
+        return df
+    
+    df = load_data()
+    
+    # Streamlit 앱 레이아웃 구성
+    st.title("GitHub CSV 파일 연동 예시")
     st.dataframe(df)
 
