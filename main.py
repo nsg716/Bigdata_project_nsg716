@@ -9,12 +9,10 @@ Original file is located at
 
 import streamlit as st
 from streamlit_cloud_bigdata1 import run_streamlit_app1 as streamlit_cloud_bigdata1_app
-from streamlit_cloud_bigdata2 import run_streamlit_app2 as streamlit_cloud_bigdata2_app
 from streamlit_cloud_bigdata3 import run_streamlit_app3 as streamlit_cloud_bigdata3_app
 
 PAGES = {
     "소득분위별 순자산,부채,소득,소비" :  streamlit_cloud_bigdata1_app,
-    "소득 분위 및 조건을 통한 경제적 위치 확인" : streamlit_cloud_bigdata2_app,
     "자산,소비에 따른 소득분위 예측": streamlit_cloud_bigdata3_app
 }
 
