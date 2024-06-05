@@ -21,10 +21,7 @@ def run_streamlit_app2():
     
     # Streamlit 앱 시작
     st.title('깃허브 데이터 시각화')
-    
-    st.write('CSV 파일 데이터:')
-    st.write(data)
-
+   
 
     
     # 데이터 불러오기
