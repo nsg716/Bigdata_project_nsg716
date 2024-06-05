@@ -18,7 +18,7 @@ def run_streamlit_app2():
     
     # CSV 파일 읽기
     df1 = pd.read_csv(github_url)
-    display(df1)
+
         
     years = ['2007','2008','2009','2010','2011','2012','2013','2014','2015','2016','2017','2018','2019','2020','2021']
     columns_of_interest = ['소득분위별(1)', '특성별(1)','특성별(2)'] + years
@@ -53,6 +53,7 @@ def run_streamlit_app2():
                             (df1_filtered['특성별(1)'] == category) &
                             (df1_filtered['특성별(2)'] == gender)
                         ]
+                        st.write(data)
                         if not data.empty:
                             data_dict[key] = data[years_input].values.flatten()
     
