@@ -8,15 +8,28 @@ Original file is located at
 """
 
 def run_streamlit_app2():
-    import pandas as pd
+    
     import streamlit as st
-
-
-
- 
+    import pandas as pd
+    import os
+    
+    # 파일 저장 경로 설정
+    save_path = 'data.csv'
+    
     uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type='csv')
     if uploaded_file is not None:
         data = pd.read_csv(uploaded_file, encoding='cp949')
         st.write(data)
-
+    
+        # 저장 버튼 생성
+        if st.button('데이터 저장'):
+            # 데이터를 CSV 파일로 저장
+            data.to_csv(save_path, index=False)
+            st.success('데이터가 저장되었습니다.')
+    
+    # 저장된 파일이 있는 경우 자동으로 로드
+    if os.path.exists(save_path):
+        st.write('저장된 데이터가 있습니다.')
+        data = pd.read_csv(save_path)
+        st.write(data)
 
