@@ -20,3 +20,4 @@ def run_streamlit_app2():
     if uploaded_file is not None:
         data = pd.read_csv(uploaded_file)
         st.write(data)
+https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/(%EC%A0%95%EC%A0%9C)%EC%86%8C%EB%93%9D5%EB%B6%84%EC%9C%84%EB%B3%84_%EA%B0%80%EA%B5%AC%EC%A3%BC_%ED%8A%B9%EC%84%B1_20240520010215.csv?token=GHSAT0AAAAAACTHB3ED3QOFMCFWBCP53YUCZTAAGUQ
