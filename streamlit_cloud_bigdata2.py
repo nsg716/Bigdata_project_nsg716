@@ -16,7 +16,7 @@ def run_streamlit_app2():
     # 깃허브 파일 경로
     github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv?token=GHSAT0AAAAAACTHB3EDIGRUHTYV2XXMRXEMZTABOLA"
 
-    st.title("소득 5분위별 가구주 특성 분석")
+   
     # 데이터 로드
     df = pd.read_csv(github_file_path)
     # 데이터 표시
