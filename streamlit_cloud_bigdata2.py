@@ -91,12 +91,10 @@ def run_streamlit_app2():
     st.write("추출된 데이터:")
     for key, value in data_dict.items():
         st.write(f"{key}: {value}")
-    
-    # 결과 계산 및 출력
+
     cal = 1
     for value in data_dict.values():
         cal *= (value/100)
-    cal = cal[0]
     
     cal = round(cal, 8)
     
