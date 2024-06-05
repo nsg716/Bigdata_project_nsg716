@@ -17,7 +17,7 @@ def run_streamlit_app2():
     github_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv'
     
     # CSV 파일 읽기
-    df1 = pd.read_csv(github_url, encoding='euc-kr')
+    df1 = pd.read_csv(github_url, encoding='cp949')
     
     # Streamlit 앱 시작
     st.title('깃허브 데이터 시각화')
