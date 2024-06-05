@@ -12,19 +12,10 @@ def run_streamlit_app2():
     import streamlit as st
 
 
-    @st.cache_data  
-    df = pd.read_csv('test.csv')
-    #CSV파일 호출
-    
-    st.dataframe(df)
-    # 데이터프레임 웹 대시보드에 출력
- 
-    species = df['species'].unique()
-    # 특정 컬럼 중복 없이 출력
-    
-    st.text('아이리스 꽃은 ' + species + '으로 되어있다.')
-    # 데이터프레임 값을 이용하여 웹 대시보드 텍스트 출력
- 
-    st.dataframe(df.head())
-    st.write(df.head())
+    # GitHub 또는 GitLab에서 CSV 파일 로드
+    data_url = 'https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/main/test.csv'
+    data = pd.read_csv(data_url ,encoding = "cp949")
+    st.write(data)
+
+
 
