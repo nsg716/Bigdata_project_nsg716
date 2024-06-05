@@ -17,18 +17,10 @@ def run_streamlit_app2():
 
     github_file_path = "https://raw.githubusercontent.com/nsg716/test_streamlit_cloud/master/test.csv?token=GHSAT0AAAAAACTHB3ECRCSZ47GVDNCL4UE2ZTAANHA"
     
-    # URL 인코딩 처리
-    encoded_url = quote(github_file_path, safe='/:?=&')
-    
-    # CSV 파일 다운로드 및 DataFrame 생성
-    
-    def load_data():
-        df = pd.read_csv(encoded_url)
-        return df
-    
-    df = load_data()
-    
-    # Streamlit 앱 레이아웃 구성
-    st.title("GitHub CSV 파일 연동 예시")
+
+     # 데이터 로드
+    df = pd.read_csv(github_file_path)
+
+    # 데이터 표시
     st.dataframe(df)
 
