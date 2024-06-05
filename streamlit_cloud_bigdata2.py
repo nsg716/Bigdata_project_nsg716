@@ -12,10 +12,11 @@ def run_streamlit_app2():
     import streamlit as st
 
 
-    # GitHub 또는 GitLab에서 CSV 파일 로드
-    data_url = 'https://github.com/nsg716/test_streamlit_cloud/blob/master/test.csv'
-    data = pd.read_csv(data_url)
-    st.write(data)
 
+ 
+    uploaded_file = st.file_uploader("CSV 파일을 업로드하세요", type='csv')
+    if uploaded_file is not None:
+        data = pd.read_csv(uploaded_file)
+        st.write(data)
 
 
