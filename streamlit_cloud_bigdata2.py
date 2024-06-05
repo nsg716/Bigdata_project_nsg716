@@ -116,7 +116,7 @@ def run_streamlit_app2():
     for value in data_dict.values():
         cal *= (value/100)
     
-    cal = cal[0]
+    
     cal = round(cal, 8)
     
     st.write(f"{years_input}년도에 가구원: 가구 내 작년 한해 동안 소득이 있거나 소득 활동을 한 가구원 중 \n소득{income_level_input}  \n성별 : {gender_input}\n연령대 :  {age_input}\n교육수준 : {education_input}\n종사자지위 : {employee_status_input} \n\n해당하는 비율")
