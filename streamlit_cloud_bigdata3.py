@@ -108,7 +108,7 @@ def run_streamlit_app3():
         y = merged_df['소득']
         
         # 데이터 분할 (학습 데이터와 테스트 데이터)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.13, random_state=42)
         
         # 선형 회귀 모델 생성
         model = LinearRegression()
@@ -222,7 +222,9 @@ def run_streamlit_app3():
                 income = models[i].predict([[year]])
                 future_income.append(income[0])
             future_incomes.append(future_income)
-        
+
+
+        future_incomes_T = np.array(future_incomes).T.tolist()
         # Display the results
         st.title("소득 분위별 예측 결과")
         
@@ -246,18 +248,28 @@ def run_streamlit_app3():
         ax.legend(prop=font_prop)
         st.pyplot(fig)
         
-        for year, incomes, predicted_income in zip(future_years, income_values, predicted_incomes):
+        for year, incomes, future_income in zip(future_years, predicted_incomes, future_incomes_T):
+            print(f"{year}년도 소득 분위별 차이 (%):") 
             min_difference = float('inf')
             min_difference_percentage = 0
-            st.write(f"{year}년도 소득 분위별 차이 (%):") 
-            for i, income in enumerate(incomes):
-                # 예측 소득과 실제 소득 사이의 차이를 백분율로 계산
-                difference_percentage = ((predicted_income[0] - income) / income) * 100
-                st.write(f"  소득 {i+1}분위: {difference_percentage:.2f}%")
-                # 0에 가장 가까운 차이 값 찾기
-                if abs(difference_percentage) < abs(min_difference):
-                    min_difference = difference_percentage
-                    min_difference_percentage = difference_percentage
-            st.write(f"  가장 가까운 분위의 차이: {min_difference_percentage:.2f}%")
+            for i in range(5):
+                for j in range(5):
+                    difference = future_income[i] - incomes
+                    difference_percentage = (difference / incomes) * 100
+                    if abs(difference_percentage) < abs(min_difference):
+                      min_difference = difference_percentage
+                      min_difference_percentage = difference_percentage
+                st.writef"  소득 {i+1}분위: {float(difference_percentage):.2f}%")
+            st.write(f"  이 년도 중 가장 가까운 차이: {float(min_difference_percentage):.2f}%")
             st.write()
+
+
+   
+
+        
+        
+
+        
+        
+        
 
