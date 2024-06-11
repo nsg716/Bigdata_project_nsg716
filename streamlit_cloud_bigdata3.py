@@ -108,7 +108,7 @@ def run_streamlit_app3():
         y = merged_df['소득']
         
         # 데이터 분할 (학습 데이터와 테스트 데이터)
-        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.13, random_state=42)
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.13, random_state=0)
         
         # 선형 회귀 모델 생성
         model = LinearRegression()
