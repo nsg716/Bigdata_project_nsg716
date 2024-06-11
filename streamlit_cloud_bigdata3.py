@@ -259,7 +259,7 @@ def run_streamlit_app3():
                     if abs(difference_percentage) < abs(min_difference):
                       min_difference = difference_percentage
                       min_difference_percentage = difference_percentage
-                st.writef"  소득 {i+1}분위: {float(difference_percentage):.2f}%")
+                st.write(f"  소득 {i+1}분위: {float(difference_percentage):.2f}%")
             st.write(f"  이 년도 중 가장 가까운 차이: {float(min_difference_percentage):.2f}%")
             st.write()
 
